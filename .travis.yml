@@ -1,0 +1,16 @@
+os: ubuntu
+language: ruby
+
+before_install:
+
+install:
+
+before_build:
+
+build:
+  - python3 src/classes.py
+  - python3 src/face_recognition.py
+
+before_script:
+
+script:

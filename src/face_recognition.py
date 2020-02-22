@@ -26,8 +26,8 @@ def collate_fn(x):
     return x[0]
 
 
-print(os.listdir("../data/test_images"))
-dataset = datasets.ImageFolder("../data/test_images")
+print(os.listdir("data/test_images"))
+dataset = datasets.ImageFolder("data/test_images")
 dataset.idx_to_class = {i: c for c, i in dataset.class_to_idx.items()}
 loader = DataLoader(dataset, collate_fn=collate_fn, num_workers=workers)
 
