@@ -1,42 +1,40 @@
-from facenet_pytorch import MTCNN, InceptionResnetV1
-import torch
+from facenet_pytorch import MTCNN
+from facenet_pytorch import InceptionResnetV1
 from torch.utils.data import DataLoader
 from torchvision import datasets
+from PIL import Image
 import numpy as np
 import pandas as pd
 import os
-
-workers = 0 if os.name == 'nt' else 4
-
-
-device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
-print('Running on device: {}'.format(device))
-
-
-mtcnn = MTCNN(
-    image_size=160, margin=0, min_face_size=20,
-    thresholds=[0.6, 0.7, 0.7], factor=0.709, post_process=True,
-    device=device
-)
-
-resnet = InceptionResnetV1(pretrained='vggface2').eval().to(device)
+import torch
 
 
 def collate_fn(x):
     return x[0]
 
 
-print(os.listdir("data/test_images"))
-dataset = datasets.ImageFolder("data/")
-dataset.idx_to_class = {i: c for c, i in dataset.class_to_idx.items()}
-loader = DataLoader(dataset, collate_fn=collate_fn, num_workers=workers)
+def checkForFace(filepath):
+    img = Image.open(filepath)
+
+    # number of threads
+    workers = 0 if os.name == 'nt' else 4
+
+    # tell py torch what device
+    device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
+    print('Running on device: {}'.format(device))
+
+    # create the "classifier"
+    mtcnn = MTCNN(device=device)
+
+    # Get the training for the classifier
+    resnet = InceptionResnetV1(pretrained='vggface2').eval().to(device)
+
+    _, prob = mtcnn(img, return_prob=True)
+
+    return prob
 
 
-aligned = []
-names = []
-for x, y in loader:
-    x_aligned, prob = mtcnn(x, return_prob=True)
-    if x_aligned is not None:
-        print('Face detected with probability: {:8f}'.format(prob))
-        aligned.append(x_aligned)
-        names.append(dataset.idx_to_class[y])
+def compare(img_1_filepath, img_2_filepath):
+
+    img_1 = Image.open(img_1_filepath)
+    img_2 = Image.open(img_2_filepath)
