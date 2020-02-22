@@ -63,6 +63,8 @@ class User:
         file.write(result);
         file.close()
 
-
 new_user = User()
 print(new_user)
+
+
+new_user.saveToCSV()
