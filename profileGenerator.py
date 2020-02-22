@@ -40,7 +40,6 @@ for i in range(100):
         line += "[male" + str(random.randint(1,9)) + ".jpg]"
 
     line += "\n"
-
     outfile.write(line);
 
 infile.close()
