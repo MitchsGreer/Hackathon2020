@@ -62,3 +62,25 @@ class User:
             out_string += str(item) + ", "
 
         return out_string
+
+    # loads this profile from a given json file
+    # def loadFromCSV(self, filename="user_profiles.csv"):
+    #     file = open(filename, "r")
+    #     file.close()
+
+    # append this profile as a csv file.
+    def saveToCSV(self, filename="user_profiles.csv"):
+        file = open(filename, "a")
+
+        # file format is:
+        # userID, name, gender, desired_gender, picture, yup, nup
+        result = str(self.userID)
+        result += ", " + str(self.name)
+        result += ", " + str(self.gender)
+        result += ", " + str(self.desired_gender)
+        result += ", " + str(self.picture)
+        result += ", " + str(self.yup)
+        result += ", " + str(self.nup) + "\n"
+
+        file.write(result)
+        file.close()
