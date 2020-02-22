@@ -20,14 +20,24 @@ for i in range(100):
         line += "F, "# choose female
 
     # pick a random picture (based on person's gender)
-    d = {}
-    
+    gender = temp[1].lstrip()
 
-    # add picture
+    if gender == "M":
+        line += "male" + str(random.randint(1,9)) + ".jpg, " # M
+    else:
+        line += "female" + str(random.randint(1,9)) + ".jpg, "# F or None
 
     # add yup
+    if gender == "M":
+        line += "[female" + str(random.randint(1,9)) + ".jpg], "
+    else:
+        line += "[male" + str(random.randint(1,9)) + ".jpg], "
 
     # add nup
+    if gender == "M":
+        line += "[female" + str(random.randint(1,9)) + ".jpg], "
+    else:
+        line += "[male" + str(random.randint(1,9)) + ".jpg]"
 
     line += "\n"
 
