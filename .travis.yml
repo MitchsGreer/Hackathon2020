@@ -1,5 +1,5 @@
 os: ubuntu
-language: ruby
+language: python
 
 before_install:
 
