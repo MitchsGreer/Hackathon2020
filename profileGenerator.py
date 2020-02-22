@@ -20,6 +20,8 @@ for i in range(100):
         line += "F, "# choose female
 
     # pick a random picture (based on person's gender)
+    d = {}
+    
 
     # add picture
 
