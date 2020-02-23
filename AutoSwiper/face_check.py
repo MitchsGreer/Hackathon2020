@@ -23,4 +23,9 @@ def checkForFace(filepath):
 
     _, prob = mtcnn(img, return_prob=True)
 
+    if prob != None:
+        prob = True
+    else:
+        prob = False
+
     return prob
