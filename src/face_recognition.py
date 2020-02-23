@@ -5,10 +5,6 @@ import os
 import torch
 
 
-def collate_fn(x):
-    return x[0]
-
-
 def checkForFace(filepath):
     img = Image.open(filepath)
 
