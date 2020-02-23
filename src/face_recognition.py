@@ -2,11 +2,13 @@ from facenet_pytorch import MTCNN
 from facenet_pytorch import InceptionResnetV1
 from torch.utils.data import DataLoader
 from torchvision import datasets
+import facenet_pytorch
 from PIL import Image
 import numpy as np
 import pandas as pd
 import os
 import torch
+import face_recognition
 
 
 def collate_fn(x):
@@ -36,5 +38,14 @@ def checkForFace(filepath):
 
 def compare(img_1_filepath, img_2_filepath):
 
-    img_1 = Image.open(img_1_filepath)
-    img_2 = Image.open(img_2_filepath)
+    known_image = Image.open(img_1_filepath)
+    unknown_image = Image.open(img_2_filepath)
+
+    img_1_encoding = face_recognition.face_encodings(known_image)[0]
+    img_2_encoding = face_recognition.face_encodings(unknown_image)[0]
+
+    results = face_recognition.compare_faces(
+        [biden_encoding], unknown_encoding, tolerance=0.5)
+
+
+print(compare("data/test_images/imgMitch.jpeg", "data/test_images/imgMitch.jpeg"))
