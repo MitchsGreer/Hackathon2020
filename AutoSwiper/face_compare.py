@@ -66,7 +66,7 @@ def compareDir(dir, picture):
     path = os.path.dirname(dir)
 
     for pic in compare_pictures:
-        if(compare(str(path) + "/" + str(pic), picture) == [True]):
+        if str(path) + "/" + str(pic) != picture and compare(str(path) + "/" + str(pic), picture) == [True]:
             matches.append(pic)
 
     return matches

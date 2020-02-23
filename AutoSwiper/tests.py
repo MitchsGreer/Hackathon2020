@@ -33,7 +33,7 @@ class TestFaceRecognition(unittest.TestCase):
 
     def test_CompareDir_2(self):
         self.assertEqual(compareDir(
-            "data/test_images/", "data/test_images/female4.jpg"), ['female1.jpg', 'female4.jpg', 'female5.jpg', 'female3.jpg'])
+            "data/test_images/", "data/test_images/female4.jpg"), ['female1.jpg', 'female5.jpg', 'female3.jpg'])
 
     def test_checkFaces_1(self):
         subprocess.run(["AutoSwiper/checkFaces.py", "data/test_images/",
