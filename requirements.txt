@@ -1,1 +1,8 @@
 opencv-python
+face-recognition
+facenet-pytorch
+numpy
+pandas
+pytorch
+torchvision
+Pillow

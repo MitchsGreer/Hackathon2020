@@ -1,12 +1,6 @@
 os: ubuntu
 language: python
 
-before_install:
-
-install:
-
-before_build:
-
 build:
   - python3 src/classes.py
   - python3 src/face_recognition.py

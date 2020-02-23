@@ -1,4 +1,6 @@
-from classes import User, Picture
+from classes import User
+from classes import Picture
+
 
 def loadUser(id=5):
     # find the user based on the given id
@@ -19,8 +21,8 @@ def loadUser(id=5):
         nup = []
         nup.append(items[6].strip()[1:-1])
 
-        if cur_id == id:  
-            infile.close()  
+        if cur_id == id:
+            infile.close()
             ret = User(
                 userID=cur_id, name=name,
                 gender=gender, desiredGender=desired_gender,
@@ -31,5 +33,5 @@ def loadUser(id=5):
     infile.close()
 
 
-if __name__ == "__main__" :
+if __name__ == "__main__":
     loadUser()
